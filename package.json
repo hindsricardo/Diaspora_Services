@@ -5,7 +5,7 @@
   "main": "server.coffee",
   "scripts": {
     "test": "jasmine -w --compilers coffee:coffee-script/register",
-    "start": "(coffee --compile --output dist --watch src &);node ./server.js"
+    "start": "(coffee --compile --output dist --watch src &);node ./dist/server.js"
   },
   "dependencies": {
     "bcrypt": "^0.8.4",
