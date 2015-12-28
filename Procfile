@@ -1,1 +1,1 @@
-web: node dist/server.js
+web: coffee server.coffee
