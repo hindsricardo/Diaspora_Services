@@ -5,7 +5,12 @@
   morgan = require('morgan')
   _ = require('lodash')
   #database = require("./config/database")
-  db = require('seraph')("http://app45557491:jp4vvUS6DcOybu6H4EFi@app45557491.sb02.stations.graphenedb.com:24789")
+  url = require('url').parse(process.env.GRAPHENEDB_URL)
+
+  db = require('seraph')(
+    server: url.protocol + '//' + url.host
+    user: url.auth.split(':')[0]
+    pass: url.auth.split(':')[1])
 
   server = restify.createServer()
   server.use restify.acceptParser(server.acceptable)
