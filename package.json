@@ -19,7 +19,7 @@
     "request": "2.67.0",
     "oauth": "0.9.14",
     "seraph": "0.14.0",
-    "url": "0.10.0"
+    "url": "0.11.0"
   },
   "author": "Ricardo Hinds",
   "license": "ISC",
