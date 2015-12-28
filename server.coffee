@@ -1,7 +1,7 @@
 (->
 
   restify = require('restify')
-  mongojs = require('mongojs')
+  mongojs = require('mongojs') 
   morgan = require('morgan')
   _ = require('lodash')
   #database = require("./config/database")
