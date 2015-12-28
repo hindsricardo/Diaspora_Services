@@ -1,14 +1,17 @@
 (->
 
   restify = require('restify')
-  mongojs = require('mongojs') 
+  mongojs = require('mongojs')
   morgan = require('morgan')
   _ = require('lodash')
   #database = require("./config/database")
-  db = require("seraph")("http://localhost:7474", {
-    user:'neo4j',
-    pass:'Car81you'
-    })
+
+  url = require('url').parse(process.env.GRAPHENEDB_URL)
+  db = require('seraph')(
+    server: url.protocol + '//' + url.host
+    user: url.auth.split(':')[0]
+    pass: url.auth.split(':')[1])
+
   server = restify.createServer()
   server.use restify.acceptParser(server.acceptable)
   server.use restify.queryParser()
