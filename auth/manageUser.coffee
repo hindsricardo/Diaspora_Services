@@ -19,7 +19,8 @@ module.exports = (server, db) ->
       if obj
         console.log "This user already exists", obj
         return
-      db.save user, ['User','Person'], (err, node) ->
+      else
+        db.save user, ['User','Person'], (err, node) ->
             if err
               throw err
             console.log node
