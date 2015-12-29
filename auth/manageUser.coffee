@@ -17,11 +17,10 @@ module.exports = (server, db) ->
       if err
         console.log err
       if obj = undefined
-        console.log err
         db.save user, ['User','Person'], (err, node) ->
             if err
               throw err
             console.log node
-      else
+      if obj
         console.log "This user already exists", obj
     return next
