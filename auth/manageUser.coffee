@@ -1,13 +1,15 @@
 
 module.exports = (server, db) ->
 
-  db.index.create 'User', 'id', (err, index) ->
+  db.index.create 'User', 'userID', (err, index) ->
     console.log index
 
 
   #User Register route =============================================
   server.post('/api/v1/diaspora/auth/register', (req, res, next) ->
     user = req.body.user
+    userID = req.body.user.id
+    user.push(userID)
     console.log user
     db.save user, ['User','Person'], (err, node) ->
         if err
