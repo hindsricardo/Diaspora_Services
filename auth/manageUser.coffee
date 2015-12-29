@@ -12,11 +12,7 @@ module.exports = (server, db) ->
   #User Register route =============================================
   server.post '/api/v1/diaspora/auth/register', (req, res, next) ->
     user = req.body.user
-    newID = { "userID": req.body.user.id }
-    newUser = user.splice user.indexOf('id'), 1
-    userObj = newUser.push newID
-    console.log(newID, newUser)
-    db.find { id: userObj.userID }, (err, obj) ->
+    db.find { userID: user.id }, (err, obj) ->
       if obj.length > 0
         console.log "This user already exists", obj, obj.length
         return
