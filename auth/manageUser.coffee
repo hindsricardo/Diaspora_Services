@@ -13,8 +13,12 @@ module.exports = (server, db) ->
   server.post '/api/v1/diaspora/auth/register', (req, res, next) ->
     user = req.body.user
     console.log user
-    db.save user, ['User','Person'], (err, node) ->
-        if err
-          throw err
-        console.log node
+    db.read {user:userID}, (err, obj) ->
+      if err
+        throw err
+      if !obj
+        db.save user, ['User','Person'], (err, node) ->
+            if err
+              throw err
+            console.log node
     return next
