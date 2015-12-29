@@ -5,13 +5,13 @@ module.exports = (server, db) ->
   server.post('/api/v1/diaspora/auth/register', (req, res, next) ->
     user = req
     db.save {
-    name: 'Test-Man'
-    age: 40
-    }, (err, node) ->
-    if err
-      throw err
-    console.log 'Test-Man inserted.'
-    return
+      name: 'Test-Man'
+      age: 40
+      }, (err, node) ->
+        if err
+          throw err
+        console.log 'Test-Man inserted.'
+      return
 
     #db.save( user, (err, node) ->
     #  db.label(node, ['Person'], (err) ->
