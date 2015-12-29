@@ -13,7 +13,8 @@ module.exports = (server, db) ->
         if err
           throw err
         console.log node
-      return
+    return next
+
 
 
   )
