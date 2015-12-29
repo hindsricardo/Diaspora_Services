@@ -1,12 +1,12 @@
 
 module.exports = (server, db) ->
 
-  db.index.create 'User', 'userID', (err, index) ->
+  ###db.index.create 'User', 'userID', (err, index) ->
     console.log index
 
   db.constraints.uniqueness.createIfNone 'User', 'userID', (err, constraint) ->
     console.log constraint
-  # -> { type: 'UNIQUENESS', label: 'Person', { property_keys: ['name'] }
+  # -> { type: 'UNIQUENESS', label: 'Person', { property_keys: ['name'] }###
 
 
   #User Register route =============================================
