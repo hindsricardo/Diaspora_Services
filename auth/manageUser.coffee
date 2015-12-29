@@ -4,7 +4,7 @@ module.exports = (server, db) ->
   db.index.create 'User', 'userID', (err, index) ->
     console.log index
 
-  db.constraints.uniqueness.create 'User', 'userID', (err, constraint) ->
+  db.constraints.uniqueness.createIfNone 'User', 'userID', (err, constraint) ->
     console.log constraint
   # -> { type: 'UNIQUENESS', label: 'Person', { property_keys: ['name'] }
 
