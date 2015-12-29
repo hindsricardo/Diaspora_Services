@@ -15,7 +15,7 @@ module.exports = (server, db) ->
     console.log user
     db.read {user: user.userID}, (err, obj) ->
       if err
-        throw err
+        console.log err
       if obj = undefined
         console.log err
         db.save user, ['User','Person'], (err, node) ->
