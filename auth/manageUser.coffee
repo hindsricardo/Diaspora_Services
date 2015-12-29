@@ -15,8 +15,8 @@ module.exports = (server, db) ->
     db.find { userID: user.userID }, (err, obj) ->
       if err
         throw err
-      switch obj
-        when exists
+      switch obj?
+        when obj
           console.log "This user already exists", obj
           return
         when undefined
