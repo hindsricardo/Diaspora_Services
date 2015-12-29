@@ -14,9 +14,8 @@ module.exports = (server, db) ->
     user = req.body.user
     console.log user
     db.read {user: user.userID}, (err, obj) ->
-      if err
-        throw err
-      if !obj
+      if err = "Invalid ID"
+        console.log err
         db.save user, ['User','Person'], (err, node) ->
             if err
               throw err
