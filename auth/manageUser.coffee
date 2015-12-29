@@ -14,7 +14,7 @@ module.exports = (server, db) ->
     user = req.body.user
     db.find { userID: user.userID }, (err, obj) ->
       console.log obj
-      if obj? || obj.length = 0
+      if obj? || obj.length > 0
         console.log "This user already exists", obj
         return
       else
