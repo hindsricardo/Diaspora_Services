@@ -1,22 +1,20 @@
 
 module.exports = (server, db) ->
 
+#Create Uniqueness for User which will be the id
+db.constraints.uniqueness.create 'User', 'id', (err, constraint) ->
+  console.log constraint
+  # -> { type: 'UNIQUENESS', label: 'Person', { property_keys: ['name'] }
+  return
+
   #User Register route =============================================
   server.post('/api/v1/diaspora/auth/register', (req, res, next) ->
-    user = req
-    db.save {
-      name: 'Test-Man'
-      age: 40
-      }, (err, node) ->
+    user = req.user
+    db.save user, ['User','Person'], (err, node) ->
         if err
           throw err
-        console.log 'Test-Man inserted.'
+        console.log node
       return
 
-    #db.save( user, (err, node) ->
-    #  db.label(node, ['Person'], (err) ->
-        # 'node' is now labelled with 'Person'
-    #    if err then console.log err
-    #    ))
 
   )
