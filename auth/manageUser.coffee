@@ -5,6 +5,7 @@ module.exports = (server, db) ->
   db.constraints.uniqueness.drop 'User', 'id', (err) ->
     if err
       console.log err
+    return
 
   db.index.create 'User', 'id', (err, index) ->
     console.log index
