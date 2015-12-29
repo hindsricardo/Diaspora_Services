@@ -8,8 +8,6 @@ module.exports = (server, db) ->
   #User Register route =============================================
   server.post('/api/v1/diaspora/auth/register', (req, res, next) ->
     user = req.body.user
-    userID = req.body.user.id
-    user.push(userID)
     console.log user
     db.save user, ['User','Person'], (err, node) ->
         if err
