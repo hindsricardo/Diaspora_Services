@@ -1,4 +1,3 @@
-(->
 
   restify = require('restify')
   mongojs = require('mongojs')
@@ -29,4 +28,3 @@
   manageUsers = require('./auth/manageUser')(server, db)
   #manageLists = require('./list/manageList')(server, db)
   return
-).call this
