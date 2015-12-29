@@ -13,8 +13,8 @@ module.exports = (server, db) ->
   server.post '/api/v1/diaspora/auth/register', (req, res, next) ->
     user = req.body.user
     db.find { userID: user.userID }, (err, obj) ->
-      console.log obj 
-      if obj?
+      console.log obj
+      if obj? || obj.length = 0
         console.log "This user already exists", obj
         return
       else
