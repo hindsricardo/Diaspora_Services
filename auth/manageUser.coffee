@@ -10,11 +10,11 @@ module.exports = (server, db) ->
 
 
   #User Register route =============================================
-  server.post '/api/v1/diaspora/auth/register', (req, res, next) ->
+  server.post '/api/v1/diaspora/auth/person/register', (req, res, next) ->
     user = req.body.user
-    db.find { userID: user.id }, (err, obj) ->
+    db.find { userID: user.userID }, (err, obj) ->
       if obj.length > 0
-        console.log "This user already exists", obj, obj.length
+        console.log "This user - person already exists", obj, obj.length
         return
       else
         db.save user, ['User','Person'], (err, node) ->
@@ -22,4 +22,18 @@ module.exports = (server, db) ->
               throw err
             console.log node
 
-    return next
+    next()
+
+  #User Register Company Route =========================================
+  server.post '/api/v1/diaspora/business/auth/register', (req, res, next) ->
+    user = req.body.user
+    db.find {username: user.username}, (err, obj) ->
+      if obj.length > 0
+        console.log "This user - business already exists", obj, obj.length
+        return
+      else
+        db.save user, ['User','business'], (err, node) ->
+          if err
+            throw err
+          console.log node
+    next()
