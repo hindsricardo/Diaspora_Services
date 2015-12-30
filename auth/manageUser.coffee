@@ -62,13 +62,21 @@ module.exports = (server, db) ->
       if typeof token = 'number'
         db.find {userID: token}, (err, node) ->
           if err
-            throw err
+            res.writeHead 403, 'Content-Type':'application/json; charset=utf-8'
+            res.end JSON.stringify {
+              error: err,
+              message: "something went wrong finding a person"
+            }
           res.writeHead 200, 'Content-Type':'application/json; charset=utf-8'
           res.end JSON.stringify node
       if typeof req.params.token = 'string'
         db.find {username: token}, (err, node) ->
           if err
-            throw err
+            res.writeHead 403, 'Content-Type':'application/json; charset=utf-8'
+            res.end JSON.stringify {
+              error: err,
+              message: "something went wrong with finding a new person"
+            }
           res.writeHead 200, 'Content-Type':'application/json; charset=utf-8'
           res.end JSON.stringify node
     next()
