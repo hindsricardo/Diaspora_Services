@@ -43,7 +43,7 @@ module.exports = (server, db) ->
           message: "This user - business already exists"
         }
       else
-        db.save user, ['User','business'], (err, node) ->
+        db.save user, ['User','Business'], (err, node) ->
           if err
             res.writeHead 403, 'Content-Type':'application/json; charset=utf-8'
             res.end JSON.stringify {
@@ -57,17 +57,18 @@ module.exports = (server, db) ->
 
     #User Find Person Route ==============================================
     server.get '/api/v1/diaspora/person/find/:token', (req, res, next) ->
+      console.log req.params.token, typeof req.params.token
       token = req.params.token
       if typeof token = 'number'
         db.find {userID: token}, (err, node) ->
           if err
             throw err
           res.writeHead 200, 'Content-Type':'application/json; charset=utf-8'
-          res.end JSON.stringify node[0]
+          res.end JSON.stringify node
       if typeof req.params.token = 'string'
         db.find {username: token}, (err, node) ->
           if err
             throw err
           res.writeHead 200, 'Content-Type':'application/json; charset=utf-8'
-          res.end JSON.stringify node[0]
+          res.end JSON.stringify node
     next()
