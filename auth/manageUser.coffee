@@ -58,10 +58,10 @@ module.exports = (server, db) ->
     #User Find Person Route ==============================================
     server.get '/api/v1/diaspora/person/find/:token', (req, res, next) ->
       console.log req.params.token, typeof req.params.token, typeof parseInt req.params.token
-      token = req.params.token
-      numToken = parseInt(req.params.token)
+      token = req.params.token # The token as a string
+      numToken = parseInt(req.params.token) #The token as a number
       if typeof numToken = 'number'
-        db.find {userID: token}, (err, node) ->
+        db.find {userID: numToken}, (err, node) ->
           if err
             res.writeHead 403, 'Content-Type':'application/json; charset=utf-8'
             res.end JSON.stringify {
