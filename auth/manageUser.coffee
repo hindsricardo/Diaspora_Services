@@ -56,7 +56,7 @@ module.exports = (server, db) ->
     next()
 
     #User Find Person Route ==============================================
-    server.get '/api/v1/diaspora/person/find/:token', (req, res, next) ->
+    server.get '/api/v1/diaspora/person/find', (req, res, next) ->
       token = req.params.token
       if typeof req.params.token = 'number'
         db.find {userID:token}, (err, node) ->
