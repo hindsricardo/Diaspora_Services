@@ -13,7 +13,7 @@ module.exports = (server, db) ->
   server.post '/api/v1/diaspora/auth/person/register', (req, res, next) ->
     user = req.body.user
     db.find { userID: user.userID }, (err, obj) ->
-      if obj.length > 0
+      if obj? and obj.length > 0
         console.log "This user - person already exists", obj, obj.length
         res.writeHead 403, 'Content-Type':'application/json; charset=utf-8'
         res.end JSON.stringify {
@@ -36,7 +36,7 @@ module.exports = (server, db) ->
   server.post '/api/v1/diaspora/business/auth/register', (req, res, next) ->
     user = req.body.user
     db.find {username: user.username}, (err, obj) ->
-      if obj.length > 0
+      if obj? and obj.length > 0
         console.log "This user - business already exists", obj, obj.length
         res.writeHead 403, 'Content-Type':'application/json; charset=utf-8'
         res.end JSON.stringify {
