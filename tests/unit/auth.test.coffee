@@ -1,8 +1,9 @@
 
 expect = require('chai').expect
 request = require('supertest')
-#server = require('../configs/testserver.coffee')
-#db = require('../configs/testserver.coffee').db
+restify = require "restify"
+server = restify.createServer()
+testserver = require('../configs/testserver.coffee')(server)
 
 restify = require('restify')
 morgan = require('morgan')
@@ -17,17 +18,6 @@ if process.env.GRAPHENEDB_URL?
 else
   db = require('seraph')()
 
-server = restify.createServer()
-server.use restify.acceptParser(server.acceptable)
-server.use restify.queryParser()
-server.use restify.bodyParser()
-server.use morgan('dev')
-server.use (req, res, next) ->
-  res.header 'Access-Control-Allow-Origin', '*'
-  res.header 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE'
-  res.header 'Access-Control-Allow-Headers', 'Content-Type'
-  next()
-  return
 
 describe '#/auth/manageUser', ->
   log = console.log

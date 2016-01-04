@@ -1,4 +1,4 @@
-module.exports = ->
+module.exports = (server) ->
   restify = require('restify')
   morgan = require('morgan')
   _ = require('lodash')
@@ -10,7 +10,6 @@ module.exports = ->
     user: url.auth.split(':')[0]
     pass: url.auth.split(':')[1])###
 
-  server = restify.createServer()
   server.use restify.acceptParser(server.acceptable)
   server.use restify.queryParser()
   server.use restify.bodyParser()
